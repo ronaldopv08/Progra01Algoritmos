@@ -6,12 +6,12 @@ public class UsuarioPedido {
 		Cola siguiente;
 		
 		public Cola() {
-			this.pCedula;
+			this.pCedula=0;
 			this.siguiente=null;
 		}
-		public Cola (int pCedula) {
+		public Cola (int pCedula,Cola siguiente) {
 			this.pCedula=pCedula;
-			this.siguiente=null;
+			this.siguiente=siguiente;
 		}
 		public int getpCedula() {
 			return pCedula;
@@ -45,6 +45,9 @@ public class UsuarioPedido {
     this.PNombre=pNombre;
     this.pDireccion=pDireccion;
     this.pCorreo=pCorreo;
+    this.head=new Cola();
+    this.tail=this.head;
+    this.size=0;
 	}
 
 	
@@ -72,9 +75,8 @@ public class UsuarioPedido {
 	}
 	
 	public void insertar() {
-		Cola Pedido1=new Cola(pCedula);
-		this.tail.setSiguiente(Pedido1);
-		this.tail=Pedido1;
+		this.tail.setSiguiente(new Cola(pCedula,null));
+		this.tail=tail.getSiguiente();
 		size++;
 	}
 	
@@ -93,7 +95,6 @@ public class UsuarioPedido {
 		}
 		return msg;
 	}
-	
 
 
 public static void main(String[] args) {
