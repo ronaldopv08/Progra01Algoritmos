@@ -1,68 +1,105 @@
-public class ColaLista {
-    private Nodo Pedido;
-private Nodo termino;
+public class UsuarioPedido {
+	
+	
+	public class Cola{
+		int pCedula;
+		Cola siguiente;
+		
+		public Cola() {
+			this.pCedula;
+			this.siguiente=null;
+		}
+		public Cola (int pCedula) {
+			this.pCedula=pCedula;
+			this.siguiente=null;
+		}
+		public int getpCedula() {
+			return pCedula;
+		}
+		public void setpCedula(int pCedula) {
+			this.pCedula = pCedula;
+		}
+		
+	
+		public Cola getSiguiente() {
+			return siguiente;
+		}
+		public void setSiguiente(Cola siguiente) {
+			this.siguiente = siguiente;
+		}
+		}
+		
+	
+	public int pCedula;
+	public String PNombre;
+	public String pDireccion;
+	public String pCorreo;
+	public int pTelefono;
+	public Cola head;
+	public Cola tail;
+	public int size;
 
-public ColaLista(){
-inicio=null;
-termino=null;
-}
-public void insertar(int dato){
-Nodo i=new Nodo(dato);
-i.setNext(null);
-if(inicio==null & termino==null){
-inicio=i;
-termino=i;
-}
-termino.setNext(i);
-termino=termino.getNext();
-}
-public int extraer(){
-int dato=inicio.getDato();;
-inicio=inicio.getNext();
-return dato;
-}
-public boolean estaVacia(){
-boolean cola=false;
-if(inicio==null & termino==null){
-cola=true;
-System.out.println("La cola esta vacia");
-}
-else{
-System.out.println("La cola no esta vacia");
-cola=false;
-}
-return cola;
-}
-public int contar(){
-int contador=0;
-Nodo c=this.inicio;
-while(c!=null){
-contador++;
-c=c.getNext();
-}
-System.out.println("Numero de datos en la cola: "+contador);
-return contador;
-}
-public String toString(){
-Nodo c=this.inicio;
-String s="";
-while(c!=null){
-s=s+c.toString();
-c=c.getNext();
-}
-return s;
-}
-public static void main(String[] args){
-ColaLista cola1=new ColaLista();
-cola1.insertar(46);
-cola1.insertar(12);
-cola1.insertar(87);
-cola1.insertar(125);
-cola1.insertar(30);
-cola1.extraer();
-cola1.estaVacia();
-cola1.contar();
-System.out.println(cola1.toString());
-}
-}
+	public UsuarioPedido(int pCedula,String pNombre, String pDireccion, String pCorreo,int pTelefono){
+    this.pTelefono= pTelefono;
+    this.pCedula=pCedula;
+    this.PNombre=pNombre;
+    this.pDireccion=pDireccion;
+    this.pCorreo=pCorreo;
+	}
 
+	
+	public int getpCedula() {
+		return pCedula;
+	}
+
+	public String getPNombre() {
+		return PNombre;
+	}
+	
+	
+	public String getpDireccion() {
+		return pDireccion;
+	}
+	
+	
+	public String getpCorreo() {
+		return pCorreo;
+	}
+	
+	
+	public int getpTelefono() {
+		return pTelefono;
+	}
+	
+	public void insertar() {
+		Cola Pedido1=new Cola(pCedula);
+		this.tail.setSiguiente(Pedido1);
+		this.tail=Pedido1;
+		size++;
+	}
+	
+	public void eliminar(){
+		Cola temp=this.head;
+		this.head=head.getSiguiente();
+		temp.setSiguiente(null);
+		size--;
+	}
+	public String toString() {
+		String msg="";
+		Cola temp= head;
+		for(int i=0;i< size;i++) {
+			msg+=temp.toString();
+			temp=temp.getSiguiente();
+		}
+		return msg;
+	}
+	
+
+
+public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		UsuarioPedido u1=new UsuarioPedido(305230590,"Pepe", "Cartago", "pepe@gmail.com",84848484);
+		u1.insertar();
+		u1.toString();
+}
+}
